@@ -208,20 +208,7 @@ class EISA_Score_Local_Surface():
 
         final_features_mat = pair_wise_features.reshape(1, num_features)
 
-        #print('Done bulding EISA for protein-ligand '+folder)
 
         return final_features_mat
 
 
-if __name__=="__main__":
-
-    path = '/scratch/mra309/PdbbindDataSets/pdbbind_v2016_refined/refined-set'
-    pdbid = '5dwr'
-    eisa_local = EISA_Score_Local_Surface(path, pdbid, kernel_type='exponential',
-                                        kernel_tau=1.0, kernel_power=2.0, cutoff=7.0,
-                                        isovalue=0.25, mesh_size=0.8)
-    t0 = time.time() 
-    local_features = eisa_local.get_features()
-    print("Shape of local features: ", local_features.shape)
-
-    print('Elapsed time: ', time.time()-t0)

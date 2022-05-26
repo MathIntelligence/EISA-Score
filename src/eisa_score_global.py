@@ -167,16 +167,16 @@ class EISA_Score_Global_Surface():
                         rho_bar = rho
 
                     isovalue_features = np.zeros(len(self.isovalue_list))
+
                     for isovalue_count, isovalue in enumerate(self.isovalue_list):
-                        # print(isovalue_count)
-                        # print(isovalue)
+
                         f = rho_bar - isovalue
-                        # print(f.shape)
+                        
                         N_x, N_y, N_z = nmb.normal_vector_components(
                             nx, ny, nz, h, f)
                         eisa = nmb.surface_area(
                         nx, ny, nz, N_x, N_y, N_z, x, y, z, h, f, isovalue)
-                        #print('%s-%s eisa: %g'%(ligand_atom_type,protein_atom_type,eisa))
+                        
                         isovalue_features[isovalue_count] = eisa
 
                     isovalue_stat_measure = [np.sum(isovalue_features),
