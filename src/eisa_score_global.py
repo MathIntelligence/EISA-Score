@@ -190,26 +190,9 @@ class EISA_Score_Global_Surface():
                                        :] = isovalue_stat_measure
 
             atomic_pair_count += 1
-            #print('rigidity index of '+l_atom_type+'-'+p_atom_type+' is: %g' %ri)
-
-            #temp[i,j]= eisa
 
         final_features_mat = pair_wise_features.reshape(1, num_features)
 
-        #print('Done bulding EISA for protein-ligand '+folder +' count: %g'%(count+1))
         
         return final_features_mat
 
-
-if __name__ =="__main__":
-
-    path = '/scratch/mra309/PdbbindDataSets/pdbbind_v2016_refined/refined-set'
-    pdbid = '5dwr'
-    eisa_global = EISA_Score_Global_Surface(path, pdbid, kernel_type='exponential',
-                                            kernel_tau=1.0, kernel_power=2.0, cutoff=7.0,
-                                            mesh_size=0.8)
-    t0 = time.time()
-    global_features = eisa_global.get_features()
-    print("Shape of global features: ", global_features.shape)
-
-    print('Elapsed time: ', time.time()-t0)
