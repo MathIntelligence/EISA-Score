@@ -15,7 +15,7 @@ Date last modified:
 import argparse
 import os
 import sys
-sys.path.append('/home/mra309/Projects/EISA_Score/src')
+sys.path.append('/home/mra309/Projects/EISA-Score/src')
 import numpy as np
 import pandas as pd
 from biopandas.pdb import PandasPdb
