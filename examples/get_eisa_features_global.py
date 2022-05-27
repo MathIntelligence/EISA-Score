@@ -15,13 +15,12 @@ Date last modified:
 import argparse
 import os
 import sys
-sys.path.append('/home/mra309/Projects/EISA-Score/src')
+sys.path.append('../src')
 import numpy as np
 import pandas as pd
 from biopandas.pdb import PandasPdb
 from biopandas.mol2 import PandasMol2
 
-import numba_utils_methods as nmb
 from eisa_score_global import EISA_Score_Global_Surface
 import time
 
