@@ -1,3 +1,3 @@
 # EISA-Score
 
-There are two folder (a) <sub>src </sub> and (b) <sub>examples </sub>.
+There are two folder (a) *src* and (b) *examples*.
