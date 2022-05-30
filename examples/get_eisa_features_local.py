@@ -55,7 +55,8 @@ def main(args):
 	
 	features = eisa_class.get_features()
 
-	output_file_name = f'{out_dir}/local-tau-{kernel_tau}'\
+	output_file_name = f'{out_dir}/local-type-{kernel_type}'\
+	                     f'-tau-{kernel_tau}'\
 	                     f'-power-{kernel_power}-cutoff-{cutoff}'\
 	                     f'-pdbid-{pdbid}'
 
