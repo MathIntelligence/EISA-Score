@@ -18,12 +18,15 @@ from sys import exit
 import numpy as np
 import pandas as pd
 
-
+# Specify the path of the PDBbind dataset
 data_folder = '/scratch/mra309/PdbbindDataSets/v2007'
+
+# Specify the output directory for the features
 out_dir = '/scratch/mra309/projects/eisa_score/features'
 
-dataset_csv_file_path = '/home/mra309/Projects/'\
-    'csv_data_files/PDBbindv2007_RefinedSet.csv'
+# Specify the csv data file containing 'PDBID' and 'pK' values
+# from utils/csv_data_files
+dataset_csv_file_path = '../utils/csv_data_files/PDBbindv2007_RefinedSet.csv'
 
 df_pdbids = pd.read_csv(dataset_csv_file_path)
 pdbids = df_pdbids['PDBID'].tolist()
