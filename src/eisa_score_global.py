@@ -26,14 +26,11 @@ import time
 
 class EISA_Score_Global_Surface():
     def __init__(self, path, pdbid, kernel_type='exponential',
-                 kernel_tau=1.0, kernel_power=2.0, cutoff=7.0,
-                 mesh_size=0.5):
+                 kernel_tau=1.0, kernel_power=2.0, cutoff=7.0):
 
         self.path = path  # path to pdbbind dataset
         self.pdbid = pdbid
         self.cutoff = cutoff
-
-        self.mesh_size = mesh_size
 
         self.kernel_type = kernel_type
         self.kernel_tau = kernel_tau
@@ -60,6 +57,7 @@ class EISA_Score_Global_Surface():
         }
 
         self.num_stat_measure = 6  # sum,mean,median,std,max,and min
+        self.mesh_size = 0.5
 
         self.isovalue_list = np.arange(0.05, 0.8, 0.05)
 

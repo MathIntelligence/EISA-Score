@@ -34,7 +34,6 @@ def main(args):
 	kernel_power = args.kernel_power
 	cutoff = args.cutoff
 	isovalue = args.isovalue
-	mesh_size = args.mesh_size
 
 	data_folder = args.data_folder
 	out_dir = args.out_dir 
@@ -56,14 +55,13 @@ def main(args):
 		                                  kernel_tau=kernel_tau,
 		                                  kernel_power=kernel_power,
 		                                  cutoff=cutoff,
-		                                  isovalue=isovalue,
-		                                  mesh_size=mesh_size)
+		                                  isovalue=isovalue)
 	
 	features = eisa_class.get_features()
 
 	output_file_name = f'{out_dir}/local-type-{kernel_type}'\
-	                     f'-tau-{kernel_tau}'\
-	                     f'-power-{kernel_power}-cutoff-{cutoff}'\
+	                     f'-tau-{kernel_tau}-power-{kernel_power}'\
+	                     f'-cutoff-{cutoff}-isovalue-{isovalue}'\
 	                     f'-pdbid-{pdbid}'
 
 	np.save(output_file_name, features)
@@ -72,8 +70,6 @@ def main(args):
 def parse_args(args):
 	parser = argparse.ArgumentParser(description="Get EISA Features")
 
-	parser.add_argument('--mesh_size', type=float, action='store',
-	                    default=1.5, help='mesh size')
 
 	parser.add_argument('--cutoff', type=float, action='store',
 	                    default=5, help='cutoff value')

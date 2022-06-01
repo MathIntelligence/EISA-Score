@@ -30,7 +30,6 @@ def main(args):
 	kernel_tau = args.kernel_tau
 	kernel_power = args.kernel_power
 	cutoff = args.cutoff
-	mesh_size = args.mesh_size
 
 	data_folder = args.data_folder
 	out_dir = args.out_dir
@@ -50,8 +49,7 @@ def main(args):
 										  kernel_type=kernel_type,
 		                                  kernel_tau=kernel_tau,
 		                                  kernel_power=kernel_power,
-		                                  cutoff=cutoff,
-		                                  mesh_size=mesh_size)
+		                                  cutoff=cutoff)
 	
 	features = eisa_class.get_features()
 
@@ -66,8 +64,6 @@ def main(args):
 def parse_args(args):
 	parser = argparse.ArgumentParser(description="Get EISA Features")
 
-	parser.add_argument('--mesh_size', type=float, action='store',
-	                    default=1.5, help='mesh size')
 
 	parser.add_argument('--cutoff', type=float, action='store',
 	                    default=5, help='cutoff value')
