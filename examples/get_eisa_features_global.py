@@ -12,18 +12,16 @@ Date last modified:
 
 """
 
-import argparse
-import os
+import time
 import sys
 sys.path.append('../src')
-import numpy as np
-import pandas as pd
-from biopandas.pdb import PandasPdb
-from biopandas.mol2 import PandasMol2
-
 from eisa_score_global import EISA_Score_Global_Surface
-import time
-
+from biopandas.mol2 import PandasMol2
+from biopandas.pdb import PandasPdb
+import pandas as pd
+import numpy as np
+import argparse
+import os
 
 
 def main(args):
@@ -35,10 +33,15 @@ def main(args):
 	mesh_size = args.mesh_size
 
 	data_folder = args.data_folder
-	out_dir = args.out_dir 
+	out_dir = args.out_dir
 
-	pdbid = args.pdbid
+	dataset_csv_file = args.dataset_csv_file
+	pdbid_index = args.pdbid_index
 
+	df_pdbids = pd.read_csv(dataset_csv_file)
+	pdbids = df_pdbids['PDBID'].tolist()
+	
+	pdbid = pdbids[pdbid_index]
 
 
 
@@ -84,8 +87,11 @@ def parse_args(args):
 	parser.add_argument('--data_folder', type=str, action='store',
 	                    help='dataset folder path')
 
-	parser.add_argument('--pdbid', type=str, action='store',
-	                    help='pdb id of the molecule')
+	parser.add_argument('--dataset_csv_file', type=str, action='store',
+	                    help='dataset csv file containing PDBID and pK values')
+
+	parser.add_argument('--pdbid_index', type=int, action='store',
+	                    help='index of PDBID of the molecule in the dataset')
 
 	args = parser.parse_args()
 

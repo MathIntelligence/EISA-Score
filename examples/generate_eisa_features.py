@@ -21,7 +21,7 @@ import pandas as pd
 
 inputs = {
 
-    'data_folder': '/scratch/mra309/PdbbindDataSets/pdbbind_v2016_refined/refined-set',
+    'data_folder': '/scratch/mra309/PdbbindDataSets/v2007',
     'out_dir': '/scratch/mra309/projects/eisa_score/features',
     'kernel_type': 'exponential',
     'kernel_tau': 0.5,
