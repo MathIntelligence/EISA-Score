@@ -87,7 +87,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Generate EISA Features")
 
-    parser.add_argument('--index', type=int, default=1,
+    parser.add_argument('--pdb_index', type=int, default=1,
                         help='index of pdbid')
 
     parser.add_argument('--surface_type', type=str, default='global',
@@ -95,14 +95,14 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    index = args.index
+    pdb_index = args.pdb_index
     surface_type = args.surface_type
 
     if surface_type[0] in ['g', 'G']:
-        run_args_global(index)
+        run_args_global(pdb_index)
 
     elif surface_type[0] in ['l', 'L']:
-        run_args_local(index)
+        run_args_local(pdb_index)
 
     else:
         print("Warning: invalid surface type!")
