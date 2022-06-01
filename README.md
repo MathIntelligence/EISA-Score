@@ -7,6 +7,6 @@ There are three folders (a) `src`, (b) `examples`, and (c) `utils`. The `src` fo
 One can use the script `generate_eisa_features.py` from `examples` folder to generate EISA features for a given data set.
 
 ```shell
-python generate_eisa_features.py --surface_type='global' --csv_file_path='../utils/PDBbindv2007_RefinedSet.csv' --pdb_index=0
+python generate_eisa_features.py --surface_type 'global' --csv_file_path '../utils/PDBbindv2016_RefinedSet.csv' --pdb_index 0
 ```
 Note: to generate features for all complexes in the dataset, run the script for `--pdb_index` from 0 to the length of the dataset.
