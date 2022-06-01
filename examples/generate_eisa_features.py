@@ -19,23 +19,17 @@ import numpy as np
 import pandas as pd
 
 
-# Specify the csv data file containing 'PDBID' and 'pK' values
-# from utils/csv_data_files
-dataset_csv_file_path = '../utils/PDBbindv2007_RefinedSet.csv'
-
-df_pdbids = pd.read_csv(dataset_csv_file_path)
-pdbids = df_pdbids['PDBID'].tolist()
-
 inputs = {
-	
-	'data_folder': '/scratch/mra309/PdbbindDataSets/v2007',
-	'out_dir': '/scratch/mra309/projects/eisa_score/features',
-	'kernel_type': 'exponential',
-	'kernel_tau': 0.5,
-	'kernel_power': 15.0,
-	'cutoff': 7.0,
-	'isovalue': 0.25,
-	'mesh_size': 0.5,
+
+    'data_folder': '/scratch/mra309/PdbbindDataSets/pdbbind_v2016_refined/refined-set',
+    'out_dir': '/scratch/mra309/projects/eisa_score/features',
+    'kernel_type': 'exponential',
+    'kernel_tau': 0.5,
+    'kernel_power': 15.0,
+    'local_cutoff': 7.0,
+    'global_cutoff': 12.0,
+    'isovalue': 0.25,
+    'mesh_size': 0.5,
 }
 
 
@@ -44,7 +38,7 @@ def run_args_local(index):
         'kernel_type': inputs['kernel_type'],
         'kernel_tau': inputs['kernel_tau'],
         'kernel_power': inputs['kernel_power'],
-        'cutoff': inputs['cutoff'],
+        'cutoff': inputs['local_cutoff'],
         'isovalue': inputs['isovalue'],
         'mesh_size': inputs['mesh_size'],
         'data_folder': inputs['data_folder'],
@@ -70,7 +64,7 @@ def run_args_global(index):
         'kernel_type': inputs['kernel_type'],
         'kernel_tau': inputs['kernel_tau'],
         'kernel_power': inputs['kernel_power'],
-        'cutoff': inputs['cutoff'],
+        'cutoff': inputs['global_cutoff'],
         'mesh_size': inputs['mesh_size'],
         'pdbid': pdbids[index],
         'data_folder': inputs['data_folder'],
@@ -100,7 +94,17 @@ if __name__ == "__main__":
     parser.add_argument('--surface_type', type=str, default='global',
                         help='index of pdbid')
 
+    parser.add_argument('--csv_file_path', type=str, action='store',
+                        help='dataset csv file path')
+
     args = parser.parse_args()
+
+    # Specify the csv data file containing 'PDBID' and 'pK' values
+    # from utils/csv_data_files
+    dataset_csv_file_path = args.csv_file_path
+
+    df_pdbids = pd.read_csv(dataset_csv_file_path)
+    pdbids = df_pdbids['PDBID'].tolist()
 
     pdb_index = args.pdb_index
     surface_type = args.surface_type
