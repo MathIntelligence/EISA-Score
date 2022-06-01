@@ -18,31 +18,38 @@ from sys import exit
 import numpy as np
 import pandas as pd
 
-# Specify the path of the PDBbind dataset
-data_folder = '/scratch/mra309/PdbbindDataSets/v2007'
-
-# Specify the output directory for the features
-out_dir = '/scratch/mra309/projects/eisa_score/features'
 
 # Specify the csv data file containing 'PDBID' and 'pK' values
 # from utils/csv_data_files
-dataset_csv_file_path = '../utils/csv_data_files/PDBbindv2007_RefinedSet.csv'
+dataset_csv_file_path = '../utils/PDBbindv2007_RefinedSet.csv'
 
 df_pdbids = pd.read_csv(dataset_csv_file_path)
 pdbids = df_pdbids['PDBID'].tolist()
 
+inputs = {
+	
+	'data_folder': '/scratch/mra309/PdbbindDataSets/v2007',
+	'out_dir': '/scratch/mra309/projects/eisa_score/features',
+	'kernel_type': 'exponential',
+	'kernel_tau': 0.5,
+	'kernel_power': 15.0,
+	'cutoff': 7.0,
+	'isovalue': 0.25,
+	'mesh_size': 0.5,
+}
+
 
 def run_args_local(index):
     argPairs = {
-        'kernel_type': 'exponential',
-        'kernel_tau': 0.5,
-        'kernel_power': 15.0,
-        'cutoff': 7.0,
-        'isovalue': 0.25,
-        'mesh_size': 0.5,
-        'pdbid': pdbids[index],
-        'data_folder': data_folder,
-        'out_dir': out_dir
+        'kernel_type': inputs['kernel_type'],
+        'kernel_tau': inputs['kernel_tau'],
+        'kernel_power': inputs['kernel_power'],
+        'cutoff': inputs['cutoff'],
+        'isovalue': inputs['isovalue'],
+        'mesh_size': inputs['mesh_size'],
+        'data_folder': inputs['data_folder'],
+        'out_dir': inputs['out_dir'],
+        'pdbid': pdbids[index]
     }
 
     args = ['./get_eisa_features_local.py']
@@ -60,14 +67,14 @@ def run_args_local(index):
 
 def run_args_global(index):
     argPairs = {
-        'kernel_type': 'exponential',
-        'kernel_tau': 0.5,
-        'kernel_power': 15.0,
-        'cutoff': 12.0,
-        'mesh_size': 0.5,
+        'kernel_type': inputs['kernel_type'],
+        'kernel_tau': inputs['kernel_tau'],
+        'kernel_power': inputs['kernel_power'],
+        'cutoff': inputs['cutoff'],
+        'mesh_size': inputs['mesh_size'],
         'pdbid': pdbids[index],
-        'data_folder': data_folder,
-        'out_dir': out_dir
+        'data_folder': inputs['data_folder'],
+        'out_dir': inputs['out_dir']
     }
 
     args = ['./get_eisa_features_global.py']
