@@ -13,6 +13,7 @@ Date last modified:
 """
 
 import numpy as np
+from scipy.spatial.distance import cdist
 
 import numba_utils_methods as nmb
 
@@ -57,11 +58,12 @@ class ElementInteractiveDensity:
 
         cloudpoint = np.array([[grid_point_x, grid_point_y, grid_point_z]])
 
+        #d = cdist(cloudpoint, interactive_atoms_coordinates, metric='euclidean')
         d = nmb.distance_matrix(cloudpoint, interactive_atoms_coordinates)
 
         phi = self.kernel_function(d)
 
-        return phi.sum(axis=1)
+        return phi.sum()
 
     def main(self, nx, ny, nz, x, y, z, ei_xyz):
 
