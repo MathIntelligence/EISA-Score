@@ -8,11 +8,11 @@ One can use the scripts `get_eisa_features_global.py` and `get_eisa_features_loc
 
 ```shell
 
-# Generates EISA features using global surface area method
+# Generate EISA features using global surface area method
 
 python get_eisa_features_global.py --dataset_csv_file '../utils/PDBbindv2016_RefinedSet.csv' --data_folder '../PDBbindDataset/v2016_refined_set' --out_dir '../features' --kernel_type 'exponential' --kernel_tau 1.0 --kernel_power 3.0 --cutoff 12.0 --pdbid_index 0
 
-# Generates EISA features using local surface area method
+# Generate EISA features using local surface area method
 
 python get_eisa_features_local.py --dataset_csv_file '../utils/PDBbindv2016_RefinedSet.csv' --data_folder '../PDBbindDataset/v2016_refined_set' --out_dir '../features' --kernel_type 'exponential' --kernel_tau 0.5 --kernel_power 15.0 --cutoff 6.5 --isovalue 0.15 --pdbid_index 0
 
