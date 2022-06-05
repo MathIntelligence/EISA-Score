@@ -78,9 +78,9 @@ class EISA_Score_Global_Surface():
 
         df = pd.DataFrame(lines)
         df.columns = ["ATOM_INDEX", "ATOM_ELEMENT", "X", "Y", "Z"]
-        
+
         if len(set(df["ATOM_ELEMENT"]) - set(self.ligand_atom_type)) > 0:
-            print("WARNING: Ligand contains unsupported atom types."\
+            print("WARNING: Ligand contains unsupported atom types."
                   "Only supported atom-type pairs are counted.")
         return(df)
 
@@ -115,7 +115,6 @@ class EISA_Score_Global_Surface():
         p_file_path = f'{self.path}/{folder}/{folder}_protein.pdb'
 
         l_file_path = f'{self.path}/{folder}/{folder}_ligand.sdf'
-
 
         protein_df = self.pdb_to_df(p_file_path)
 
@@ -209,7 +208,7 @@ class EISA_Score_Global_Surface():
                     pair_wise_features[atomic_pair_count,
                                        :] = isovalue_stat_measure
 
-            atomic_pair_count += 1
+                atomic_pair_count += 1
 
         final_features_mat = pair_wise_features.reshape(1, num_features)
 
